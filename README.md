@@ -18,3 +18,17 @@ This lab uses a custom Wazuh correlation rule to detect repeated SSH authenticat
 The rule correlates multiple authentication-related Wazuh events within a defined time window and generates a high-severity alert when repeated failures are detected from the same source IP.
 
 The complete rule is available in [`detection-rules/ssh-brute-force.xml`](detection-rules/ssh-brute-force.xml).
+
+## Automated Response
+
+The lab uses Wazuh Active Response to automatically block the source IP after the SSH brute-force correlation rule is triggered.
+
+### Response Workflow
+
+1. SSH authentication failures are generated during the controlled lab simulation.
+2. Wazuh correlates the authentication events using custom rule **127000**.
+3. The correlation rule generates a **Level 12** brute-force alert.
+4. Wazuh Active Response executes the `firewall-drop` response.
+5. The detected source IP is blocked automatically.
+
+This demonstrates an end-to-end SOC workflow from **detection and correlation to automated containment**.
