@@ -32,3 +32,35 @@ The lab uses Wazuh Active Response to automatically block the source IP after th
 5. The detected source IP is blocked automatically.
 
 This demonstrates an end-to-end SOC workflow from **detection and correlation to automated containment**.
+
+## Lab Environment
+
+The SOC home lab consists of multiple isolated systems used to generate, collect, detect, investigate, and respond to security events.
+
+### Components
+
+- **Wazuh Manager:** Centralized security monitoring and alert management
+- **Windows Endpoint:** Generates Windows security telemetry and authentication events
+- **Linux Endpoint:** Generates Linux authentication and SSH security events
+- **Kali Linux:** Used to simulate controlled security testing activity
+- **Elasticsearch:** Used for security data analysis and visualization
+- **Splunk:** Used for hands-on SIEM log investigation and monitoring
+
+### Security Workflow
+
+```text
+Security Activity
+       ↓
+Windows / Linux Logs
+       ↓
+Wazuh Manager
+       ↓
+Detection & Correlation
+       ↓
+Security Alert
+       ↓
+Investigation
+       ↓
+Wazuh Active Response
+       ↓
+IP Blocking / Containment
