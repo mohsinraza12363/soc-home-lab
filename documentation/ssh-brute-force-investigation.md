@@ -64,3 +64,27 @@ Upon triggering Rule `127000`, Wazuh Active Response invokes the `firewall-drop`
   </rule>
 
 </group>
+
+---
+
+## MITRE ATT&CK Mapping
+
+This simulated attack and detection lifecycle maps to the following enterprise tactics and techniques:
+
+- **Tactic:** Credential Access ([TA0006](https://attack.mitre.org/tactics/TA0006/))
+- **Technique:** Brute Force ([T1110](https://attack.mitre.org/techniques/T1110/))
+- **Sub-Technique:** Password Guessing ([T1110.001](https://attack.mitre.org/techniques/T1110/001/))
+- **Defense Evasion / Mitigation:** Network Content Filtering / Host Firewall Blocking (Active Response)
+
+---
+
+## Lessons Learned & SOC Analyst Takeaways
+
+1. **Alert Fatigue Reduction via Correlation:** 
+   Single authentication failure logs (`Rule 5760`) are extremely noisy in production environments. Relying on default single-event rules can flood a Tier 1 queue with false positives. Implementing custom correlation rule `127000` (requiring multiple failures from the *same source IP* within a tight timeframe) ensures analysts only investigate high-confidence threats.
+   
+2. **Speed of Containment:** 
+   Manual triage introduces dwell time. Integrating Wazuh Active Response (`firewall-drop`) reduced containment time to milliseconds, automatically neutralizing the threat before manual intervention was possible.
+   
+3. **Threshold Tuning Considerations:** 
+   Setting the frequency too low risks blocking legitimate users who mistype their password multiple times. Tuning the threshold ($\ge 3$ attempts in $120$ seconds) balances strict security enforcement with user accessibility.
