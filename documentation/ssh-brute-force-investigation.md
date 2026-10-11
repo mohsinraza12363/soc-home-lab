@@ -231,4 +231,4 @@ A defensible SOC investigation should connect the original activity, endpoint ev
 **Environment:** Controlled cybersecurity home lab
 **Primary SIEM:** Wazuh
 **Detection:** Custom SSH authentication-failure correlation rule
-**Response:** Wazuh Active Response using `firewall-drop`
+**Response:** Wazuh Active Response using `firewall-drop` 
