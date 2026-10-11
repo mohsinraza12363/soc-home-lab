@@ -64,7 +64,7 @@ Upon triggering Rule `127000`, Wazuh Active Response invokes the `firewall-drop`
   </rule>
 
 </group>
-
+```
 ---
 
 ## MITRE ATT&CK Mapping
